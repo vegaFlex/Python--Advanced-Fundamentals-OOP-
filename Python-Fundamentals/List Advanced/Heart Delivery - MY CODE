@@ -1,0 +1,40 @@
+houses = [int(x) for x in input().split('@')]
+
+curr_house = 0
+command = input()
+
+successful_house = 0
+unsuccessful_house = 0
+
+while command != 'Love!':
+
+    command_info = command.split()
+    jump_length = int(command_info[1])
+
+    curr_house += jump_length
+
+    if curr_house >= len(houses):
+        curr_house = 0
+
+    if houses[curr_house] == 0:
+        print(f"Place {curr_house} already had Valentine's day.")
+    else:
+        houses[curr_house] -= 2
+        if houses[curr_house] == 0:
+            print(f"Place {curr_house} has Valentine's day.")
+
+    command = input()
+
+print(f"Cupid's last position was {curr_house}.")
+
+for house in houses:
+    if house == 0:
+        successful_house += 1
+
+if len(houses) == successful_house:
+    print("Mission was successful.")
+
+for house in houses:
+    if house != 0:
+        unsuccessful_house += 1
+print(f"Cupid has failed {unsuccessful_house} places.")
